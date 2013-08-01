@@ -14,6 +14,7 @@ int main(int argc, char * argv[])
 {
     @autoreleasepool {
         // coba test load data from git repository
+        // test pull from git
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([tpAppDelegate class]));
     }
 }
