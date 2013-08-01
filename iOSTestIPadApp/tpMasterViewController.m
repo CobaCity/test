@@ -15,6 +15,9 @@
 @end
 
 @implementation tpMasterViewController
+{
+    NSMutableArray *_vals;
+}
 
 - (void)awakeFromNib
 {
@@ -27,6 +30,11 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    _vals = [[NSMutableArray alloc] init];    [_vals addObject:@"test1"];
+    [_vals addObject:@"test1"];
+    [_vals addObject:@"test2"];
+    [_vals addObject:@"test3"];
+    
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
@@ -64,19 +72,23 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [[self.fetchedResultsController sections] count];
+    return 1;
+  //   return [[self.fetchedResultsController sections] count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
-    return [sectionInfo numberOfObjects];
+    return _vals.count;
+    //id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
+    //return [sectionInfo numberOfObjects];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    [self configureCell:cell atIndexPath:indexPath];
+  //  [self configureCell:cell atIndexPath:indexPath];
+    cell.textLabel.text = [_vals objectAtIndex:indexPath.row];
+    
     return cell;
 }
 
