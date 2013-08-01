@@ -13,6 +13,7 @@
 int main(int argc, char * argv[])
 {
     @autoreleasepool {
+        // coba test load data from git repository
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([tpAppDelegate class]));
     }
 }
